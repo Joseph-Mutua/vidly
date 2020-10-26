@@ -7,11 +7,16 @@ const ListGroup = (props) => {
     <ul className="list-group">
       {items.map((item) => (
         <li key={item[valueProperty]} className="list-group-item">
-          {item[textProperty ]}
+          {item[textProperty]}
         </li>
       ))}
     </ul>
   );
+};
+
+ListGroup.defaultPops = {
+  textProperty: "name",
+  valueProperty: "_id",
 };
 
 export default ListGroup;
