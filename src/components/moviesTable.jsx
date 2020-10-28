@@ -22,7 +22,7 @@ columns = [
     const { movies, onSort, sortColumn} = this.props;
 
     return (
-      <Table columns={this.columns} data={movies} sortColumn={sortColumn} onS ort={onSort}/>
+      <Table columns={this.columns} data={movies} sortColumn={sortColumn} onSort={onSort}/>
     );
   }
 }
