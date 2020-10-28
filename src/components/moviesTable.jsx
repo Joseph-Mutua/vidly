@@ -9,8 +9,14 @@ columns = [
   {path: "genre.name", label: "Genre"},
   {path: "numberInStock", label: "Stock"},
   {path: "dailyRentalRate", label: "Rate"},
-  {key: "Like"},
-  {key: "delete"},
+  {key: "Like", content: movie =>  (<Like liked={true} />)},
+  {key: "delete", content: movie =>               
+               (<button
+                  onClick={() => this.props.onDelete(movie)}
+                  className="btn btn-danger btn-sm"
+                >
+                  Delete
+                </button>)},
 ];
 
   render() {
@@ -19,28 +25,7 @@ columns = [
     return (
       <table className="table">
         <TableHeader columns={this.columns} onSort={onSort}/>
-        <TableBody data={movies}/>
-        <tbody>
-          {movies.map((movie) => (
-            <tr key={movie._id}>
-              <td>{movie.title}</td>
-              <td>{movie.genre.name}</td>
-              <td>{movie.numberInStock}</td>
-              <td>{movie.dailyRentalRate}</td>
-              <td>
-                <Like liked={true} />
-              </td>
-              <td>
-                <button
-                  onClick={() => onDelete(movie)}
-                  className="btn btn-danger btn-sm"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        <TableBody columns={this.columns} data={movies}/>
       </table>
     );
   }
