@@ -1,11 +1,13 @@
 import React from "react";
 import {Route, Redirect, Switch} from "react-router-dom"
 import Movies from "./components/movies";
+import MovieForm from './components/movieForm';
 import Rentals from './components/rentals';
 import Customers from './components/customers';
 import NotFound from './components/notFound';
 import NavBar from "./components/navBar";
 import "./App.css"; 
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
     <NavBar/>
     <main className="container">
       <Switch>
+        <Route path="/movies/:id" component={MovieForm}/>
         <Route path="/movies" component={Movies}/>
         <Route path="/customers" component={Customers}/>
         <Route path="/rentals" component={Rentals}/>
