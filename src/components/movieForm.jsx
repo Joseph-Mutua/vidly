@@ -10,7 +10,7 @@ const MovieForm = ({ match, history }) => {
       >
         Save
       </button>
-    </div>
+    </div> 
   );
 };
 
