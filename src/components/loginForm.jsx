@@ -9,10 +9,24 @@ class LoginForm extends Component {
     errors: {},
   };
 
+  validateProperty = ({ name, value }) => {
+    if (name === "username") {
+      if (!value) return "Username is required";
+    }
+    if (name === "password") {
+      if (!value) return "Password is required!";
+    }
+  };
+
   handleChange = ({ currentTarget: input }) => {
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(input);
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
+
     const account = { ...this.state.account };
     account[input.name] = input.value;
-    this.setState({ account });
+    this.setState({ account, errors });
   };
 
   validate = () => {
@@ -21,8 +35,7 @@ class LoginForm extends Component {
 
     if (!account.username) errors.username = "Username is required!";
 
-    if (!account.password)
-      errors.password = "Password  is required!";
+    if (!account.password) errors.password = "Password  is required!";
 
     return Object.keys(errors).length === 0 ? null : errors;
   };
@@ -42,6 +55,7 @@ class LoginForm extends Component {
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
           <Input
+            autoFocus
             name="username"
             value={account.username}
             label="Username"
