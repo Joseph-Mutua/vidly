@@ -16,12 +16,11 @@ class LoginForm extends Component {
   };
 
   validateProperty = ({ name, value }) => {
-    if (name === "username") {
-      if (!value) return "Username is required";
-    }
-    if (name === "password") {
-      if (!value) return "Password is required!";
-    }
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    const { error } = Joi.validate(obj, schema);
+    if (!error) return null;
+    return error.details[0].message;
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -36,16 +35,15 @@ class LoginForm extends Component {
   };
 
   validate = () => {
-    const options = {abortEarly:false}
-    const {error} = Joi.validate(this.state.account, this.schema, options);
-  if(!error) return null;
+    const options = { abortEarly: false };
+    const { error } = Joi.validate(this.state.account, this.schema, options);
+    if (!error) return null;
 
-  const errors = {}
-  for (let item of error.details) {
-    errors[item.path[0]] = item.message;
-    return errors;
-  }
-
+    const errors = {};
+    for (let item of error.details) {
+      errors[item.path[0]] = item.message;
+      return errors;
+    }
   };
 
   handleSubmit = (e) => {
