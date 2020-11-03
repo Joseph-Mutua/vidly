@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Like from "./common/like";
 import Table from "./common/table"
-import {Link} from "react-router-dom"
+import {Link,} from "react-router-dom"
 
 class MoviesTable extends Component {
 columns = [
@@ -23,7 +23,15 @@ columns = [
     const { movies, onSort, sortColumn} = this.props;
 
     return (
-      <Table columns={this.columns} data={movies} sortColumn={sortColumn} onS ort={onSort}/>
+      <React.Fragment>
+
+        <Table
+          columns={this.columns}
+          data={movies}
+          sortColumn={sortColumn}
+          onSort={onSort}
+        />
+      </React.Fragment>
     );
   }
 }

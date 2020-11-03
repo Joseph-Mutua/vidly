@@ -2,12 +2,14 @@ import React from "react";
 import {Route, Redirect, Switch} from "react-router-dom"
 import LoginForm from './components/loginForm';
 import MovieForm from './components/movieForm';
+import RegistrationForm from './components/registrationForm';
 import Movies from "./components/movies";
 import Rentals from './components/rentals';
 import Customers from './components/customers';
 import NotFound from './components/notFound';
 import NavBar from "./components/navBar";
 import "./App.css"; 
+
 
 
 
@@ -18,7 +20,9 @@ function App() {
     <main className="container">
       <Switch>
         <Route path="/login" component={LoginForm}/>
-         <Route path="/movies/:id" component={MovieForm}/>
+        <Route path="/registration" component={RegistrationForm}/>
+        <Route path="/movies/:id" component={MovieForm}/>
+        <Route path="/movies/new" component={Movies}/>
         <Route path="/movies" component={Movies}/>
         <Route path="/customers" component={Customers}/>
         <Route path="/rentals" component={Rentals}/>
